@@ -20,7 +20,7 @@ public class ListProductAction extends Action {
 		
 		int currentPage=1;
 		
-		if(request.getParameter("currentPage") != null){
+		if(request.getParameter("currentPage") != null && request.getParameter("currentPage") != ""){
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
 		System.out.println("currentPage : "+currentPage);
@@ -36,6 +36,10 @@ public class ListProductAction extends Action {
 		int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
 		int pageUnit  =  Integer.parseInt(getServletContext().getInitParameter("pageUnit"));
 		search.setPageSize(pageSize);
+		
+		String condition = request.getParameter("condition");
+		search.setCondition(condition);
+		System.out.println(condition);
 		
 		ProductService service = new ProductServiceImpl();
 		Map<String,Object> map=service.getProductList(search);

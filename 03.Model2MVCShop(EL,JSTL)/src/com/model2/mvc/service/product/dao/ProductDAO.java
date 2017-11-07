@@ -84,11 +84,22 @@ public class ProductDAO {
 			} else if ( search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
 				sql += " AND prod_name LIKE'" + search.getSearchKeyword()	+ "%'";
 			}else if (search.getSearchCondition().equals("2") && !search.getSearchKeyword().equals("")) {
-				sql += " AND price='" + search.getSearchKeyword()+ "'";
+				String[] str=search.getSearchKeyword().split("~");
+				if(str.length==1) {
+					sql += " AND price='" + search.getSearchKeyword()+ "'";
+				}else {
+					sql += " AND price BETWEEN '"+str[0]+"' AND '"+str[1]+"'";
+				}
 			}
 		}
-		sql += " ORDER BY prod_no";
-		
+		if(search.getCondition() != null && search.getCondition().equals("low")) {
+			sql += " ORDER BY price";
+		}else if(search.getCondition() != null && search.getCondition().equals("high")) {
+			sql += " ORDER BY price DESC";
+		}else {
+			sql += " ORDER BY prod_no";
+		}
+			
 		System.out.println("ProductDAO::Original SQL :: " + sql);
 		
 		//==> TotalCount GET

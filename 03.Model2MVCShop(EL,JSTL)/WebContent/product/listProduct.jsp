@@ -74,30 +74,21 @@ function fncGetUserList(currentPage) {
 	<%--
 		if(search.getSearchCondition() != null) {
 	--%>
-	<c:if test="${!empty search.searchCondition}">
+	
 		
 		<td align="right">
 			<select name="searchCondition" class="ct_input_g" style="width:80px">
-				<option value="0" ${search.searchCondition==0 ? "selected" : ""}>상품번호</option>
-				<option value="1" ${search.searchCondition==1 ? "selected" : ""}>상품명</option>
-				<option value="2" ${search.searchCondition==2 ? "selected" : ""}>상품가격</option>		
+				<option value="0" ${!empty search.searchCondition && search.searchCondition==0 ? "selected" : ""}>상품번호</option>
+				<option value="1" ${!empty search.searchCondition && search.searchCondition==1 ? "selected" : ""}>상품명</option>
+				<option value="2" ${!empty search.searchCondition && search.searchCondition==2 ? "selected" : ""}>상품가격</option>		
 			</select>
 			<input type="text" name="searchKeyword"  value="${! empty search.searchKeyword ? search.searchKeyword : ""}" class="ct_input_g" style="width:200px; height:19px" />
 		</td>
-	</c:if>
-	<%--
+	
+	<%-- 
 		}else{
 	--%>
-	<c:if test="${empty search.searchCondition}">
-		<td align="right">
-			<select name="searchCondition" class="ct_input_g" style="width:80px">
-				<option value="0">상품번호</option>
-				<option value="1">상품명</option>
-				<option value="2">상품가격</option>
-			</select>
-			<input type="text" name="searchKeyword" class="ct_input_g" style="width:200px; height:19px" />
-		</td>
-	</c:if>
+	
 	<%--
 		}
 	--%>
@@ -123,7 +114,11 @@ function fncGetUserList(currentPage) {
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
-		<td colspan="11" >전체 ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage} 페이지</td>
+		<td colspan="8" >전체 ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage} 페이지</td>
+		<td colspan="3" align = "right">
+		<input type="hidden" id="condition" name="condition" value=""/>
+		<a href="/listProduct.do?condition=high">가격높은순</a>  <a href="/listProduct.do?condition=low">가격낮은순</a>
+		</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
@@ -132,7 +127,7 @@ function fncGetUserList(currentPage) {
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">가격</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">등록일</td>	
+		<td class="ct_list_b">${user.role=='user' ? "상세정보" : "등록일"}</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">현재상태</td>	
 	</tr>
@@ -166,11 +161,21 @@ function fncGetUserList(currentPage) {
 					</c:if>
 					<c:if test="${user.role!='user'}">
 						<c:if test="${param.menu=='manage'}">
+							<c:if test="${empty product.proTranCode }">
 							<a href="/updateProductView.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a>
+							</c:if>
+							<c:if test="${!empty product.proTranCode }">
+							${product.prodName}
+							</c:if>
 						<%--}else{--%>
 						</c:if>
 						<c:if test="${param.menu!='manage'}">
+							<c:if test="${empty product.proTranCode }">
 							<a href="/getProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a>
+							</c:if>
+							<c:if test="${!empty product.proTranCode }">
+							${product.prodName}
+							</c:if>
 						<%--}
 					}--%>
 						</c:if>
@@ -179,7 +184,7 @@ function fncGetUserList(currentPage) {
 			<td></td>
 			<td align="left">${product.price}</td>
 			<td></td>
-			<td align="left">${product.regDate}</td>
+			<td align="left">${user.role=='user' ? product.prodDetail : product.regDate}</td>
 			<td></td>
 			<td align="left">
 				<%--if(user.getRole().equals("user")){ --%>

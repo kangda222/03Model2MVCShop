@@ -8,6 +8,7 @@ public class Search {
 	private String searchCondition;
 	private String searchKeyword;
 	private int pageSize;
+	private String condition;
 	
 	///Constructor
 	public Search() {
@@ -20,7 +21,7 @@ public class Search {
 	public void setPageSize(int paseSize) {
 		this.pageSize = paseSize;
 	}
-	
+	 
 	public int getCurrentPage() {
 		return curruntPage;
 	}
@@ -39,6 +40,12 @@ public class Search {
 	}
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 
 	@Override
