@@ -13,9 +13,13 @@ public class LogoutAction extends Action {
 	public String execute(HttpServletRequest request,	HttpServletResponse response) throws Exception {
 		
 		HttpSession session=request.getSession();
-		
-		session.invalidate();
-		
-		return "redirect:/index.jsp";
+		if(session.getAttribute("user")==null) {
+			session.invalidate();
+			return "redirect:/user/loginView.jsp";
+		}else {
+			session.invalidate();
+			
+			return "redirect:/index.jsp";
+		}
 	}
 }

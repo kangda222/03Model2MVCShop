@@ -24,6 +24,7 @@ public class LoginAction extends Action{
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("user", dbUser);
+		System.out.println(session.getMaxInactiveInterval());
 		
 		return "redirect:/index.jsp";
 	}

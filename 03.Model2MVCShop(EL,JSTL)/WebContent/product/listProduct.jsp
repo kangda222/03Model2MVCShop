@@ -25,8 +25,9 @@
 
 <script type="text/javascript">
 <!--
-function fncGetUserList(currentPage) {
+function fncGetUserList(currentPage,condition) {
 	document.getElementById("currentPage").value = currentPage;
+	document.getElementById("condition").value = condition;
    	document.detailForm.submit();		
 }
 -->
@@ -51,12 +52,7 @@ function fncGetUserList(currentPage) {
 					<%--if(menu.equals("manage")){ 
 							惑前 包府
 							}else{ 惑前 格废炼雀<%} --%>
-					<c:if test="${param.menu=='manage'}">
-						惑前 包府
-					</c:if>
-					<c:if test="${param.menu!='manage'}">
-						惑前 格废炼雀
-					</c:if>
+					${param.menu=='manage' ? "惑前 包府" : "惑前 格废炼雀"}
 					
 					</td>
 				</tr>

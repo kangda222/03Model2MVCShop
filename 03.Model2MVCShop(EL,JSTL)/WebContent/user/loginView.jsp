@@ -29,7 +29,12 @@
 	window.onload = function(){
 		document.getElementById("userId").focus();
 	}
+	
+	function fncSession(){
+		  alert('세션만료 다시 로그인')
+		}
 -->
+
 </script>
 
 </head>

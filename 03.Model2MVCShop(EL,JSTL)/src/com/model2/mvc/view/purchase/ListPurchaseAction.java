@@ -18,34 +18,40 @@ public class ListPurchaseAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		Search search = new Search();
-		
-		int currentPage=1;
-		
-		if(request.getParameter("currentPage") != null){
-			currentPage=Integer.parseInt(request.getParameter("currentPage"));
-		}
-		System.out.println("currentPage : "+currentPage);
-		search.setCurrentPage(currentPage);
-						
-		// web.xml  meta-data 로 부터 상수 추출 
-		int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
-		int pageUnit  =  Integer.parseInt(getServletContext().getInitParameter("pageUnit"));
-		search.setPageSize(pageSize);
-		
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		System.out.println("userID:"+user.getUserId());
-		PurchaseService service = new PurchaseServiceImpl();
-		Map<String,Object> map=service.getPurchaseList(search, user.getUserId());
-		
-		Page resultPage	= new Page( currentPage, ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		System.out.println("ListPurchaseAction ::"+resultPage);
-	
-		request.setAttribute("list", map.get("list"));
-		request.setAttribute("resultPage", resultPage);
-								
-		return "forward:/purchase/listPurchase.jsp";
+		System.out.println("sessionId : "+session.getId());
+		if(session.getAttribute("user")==null) {
+			return "forward:/logout.do";
+		}else {
+			Search search = new Search();
+			
+			int currentPage=1;
+			
+			if(request.getParameter("currentPage") != null){
+				currentPage=Integer.parseInt(request.getParameter("currentPage"));
+			}
+			System.out.println("currentPage : "+currentPage);
+			search.setCurrentPage(currentPage);
+							
+			// web.xml  meta-data 로 부터 상수 추출 
+			int pageSize = Integer.parseInt( getServletContext().getInitParameter("pageSize"));
+			int pageUnit  =  Integer.parseInt(getServletContext().getInitParameter("pageUnit"));
+			search.setPageSize(pageSize);
+			
+			
+			User user = (User)session.getAttribute("user");
+			System.out.println("userID:"+user.getUserId());
+			PurchaseService service = new PurchaseServiceImpl();
+			Map<String,Object> map=service.getPurchaseList(search, user.getUserId());
+			
+			Page resultPage	= new Page( currentPage, ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+			System.out.println("ListPurchaseAction ::"+resultPage);
+			
+			request.setAttribute("list", map.get("list"));
+			request.setAttribute("resultPage", resultPage);
+											
+			return "forward:/purchase/listPurchase.jsp";
+		}
 	}
 
 }
