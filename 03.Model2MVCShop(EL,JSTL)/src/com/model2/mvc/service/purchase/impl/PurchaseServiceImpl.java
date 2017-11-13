@@ -35,11 +35,15 @@ public class PurchaseServiceImpl implements PurchaseService {
 		return purchaseDAO.getSaleList(Search);
 	}
 	
-	public void updatePurcahse(Purchase purchase) throws Exception {
+	public void updatePurchase(Purchase purchase) throws Exception {
 		purchaseDAO.updatePurchase(purchase);
 	}
 	
 	public void updateTranCode(Purchase purchase) throws Exception {
 		purchaseDAO.updateTranCode(purchase);
+	}
+	
+	public void refundPurchase(Purchase purchase) throws Exception {
+		purchaseDAO.refundPurchase(purchase);
 	}
 }

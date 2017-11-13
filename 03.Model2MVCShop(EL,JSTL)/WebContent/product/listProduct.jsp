@@ -113,7 +113,7 @@ function fncGetUserList(currentPage,condition) {
 		<td colspan="8" >전체 ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage} 페이지</td>
 		<td colspan="3" align = "right">
 		<input type="hidden" id="condition" name="condition" value=""/>
-		<a href="/listProduct.do?condition=high">가격높은순</a>  <a href="/listProduct.do?condition=low">가격낮은순</a>
+		<a href="javascript:fncGetUserList('${resultPage.currentPage }','high')">가격높은순</a>  <a href="javascript:fncGetUserList('${resultPage.currentPage }','low')">가격낮은순</a>
 		</td>
 	</tr>
 	<tr>

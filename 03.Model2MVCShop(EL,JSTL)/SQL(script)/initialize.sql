@@ -159,3 +159,12 @@ FROM (	SELECT inner_table. * ,  ROWNUM AS row_seq
 WHERE row_seq BETWEEN 4 AND 6;
 
 //==> (currentPage-1) * paseSize+1           currentPage * paseSize
+
+CREATE TABLE review ( 
+	prod_no 						NUMBER 				NOT NULL,
+	prod_name 				VARCHAR2(100) 	NOT NULL,
+	review_detail 				VARCHAR2(200),
+	image_file 					VARCHAR2(100),
+	reg_date 					DATE,
+	PRIMARY KEY(prod_no)
+);

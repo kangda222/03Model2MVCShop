@@ -148,13 +148,25 @@
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
 					</td>
 				</c:if>
-				<c:if test="${purchase.tranCode.trim()!=1}"></c:if>
+				<c:if test="${purchase.tranCode.trim()!=1}">
+					<c:if test="${purchase.tranCode.trim()==3}">
+						<td width="17" height="23">
+						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+						</td>
+						<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
+							<a href="/refundPurchase.do?tranNo=${purchase.tranNo}">환불</a>
+						</td>
+						<td width="14" height="23">
+							<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
+						</td>
+					</c:if>
+				</c:if>
 					<td width="30"></td>
 					<td width="17" height="23">
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-						<a href="javascript:history.go(-1);">확인</a>
+						<a href="javascript:history.go(-1);">${purchase.tranCode.trim()==3 ? "취소" : "확인"}</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif"width="14" height="23"/>

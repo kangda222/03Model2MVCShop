@@ -18,8 +18,10 @@ public interface PurchaseService {
 	
 	public Map<String,Object> getSaleList(Search search) throws Exception;
 	
-	public void updatePurcahse(Purchase purchaseVO) throws Exception;
+	public void updatePurchase(Purchase purchase) throws Exception;
 	
-	public void updateTranCode(Purchase purchaseVO) throws Exception;
+	public void updateTranCode(Purchase purchase) throws Exception;
+	
+	public void refundPurchase(Purchase purchase) throws Exception;
 	
 }

@@ -88,7 +88,11 @@
 							 <%--} --%></td>
 			<td></td>
 			<td align="left"><c:if test="${purchase.tranCode.trim()==2}"><a href="/updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3">물건도착</a></c:if>
-							 <c:if test="${purchase.tranCode.trim()!=2}"></c:if>
+							 <c:if test="${purchase.tranCode.trim()==3}">
+							 	<a href="/getPurchase.do?tranNo=${purchase.tranNo}">환불</a> 
+							 	<a href="/updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=4">구매확정</a>
+							 </c:if>
+							 <c:if test="${purchase.tranCode.trim()==4}"><a href="/addPurchaseReview.do?tranNo=${purchase.tranNo}">리뷰작성</a></c:if>
 			</td>
 		</tr>
 		<tr>

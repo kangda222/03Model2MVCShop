@@ -209,6 +209,20 @@ public class PurchaseDAO {
 		con.close();
 	}
 	
+	public void refundPurchase(Purchase purchase) throws Exception{
+		Connection con = DBUtil.getConnection();
+		
+		String sql = "DELETE FROM transaction WHERE tran_no=?";
+		
+		PreparedStatement pStmt = con.prepareStatement(sql);
+		pStmt.setInt(1, purchase.getTranNo());
+		
+		pStmt.executeUpdate();
+		
+		pStmt.close();
+		con.close();
+	}
+	
 	private int getTotalCount(String sql) throws Exception {
 		
 		sql = "SELECT COUNT(*) "+
