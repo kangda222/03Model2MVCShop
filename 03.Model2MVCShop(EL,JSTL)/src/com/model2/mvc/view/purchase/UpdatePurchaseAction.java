@@ -25,7 +25,7 @@ public class UpdatePurchaseAction extends Action {
 		purchase.setDivyDate(request.getParameter("divyDate"));
 		
 		PurchaseService service = new PurchaseServiceImpl();
-		service.updatePurcahse(purchase);
+		service.updatePurchase(purchase);
 				
 		return "forward:/getPurchase.do?tranNo="+tranNo;
 	}
