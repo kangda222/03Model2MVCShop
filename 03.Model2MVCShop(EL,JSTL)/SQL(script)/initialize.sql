@@ -168,3 +168,12 @@ CREATE TABLE review (
 	reg_date 					DATE,
 	PRIMARY KEY(prod_no)
 );
+
+CREATE TABLE cart ( 
+	user_id 			VARCHAR2(20)	NOT NULL,
+	prod_no 			NUMBER 			NOT NULL,
+	prod_name 			VARCHAR2(100) 	NOT NULL,
+	price 				NUMBER(10),
+	reg_date 			DATE,
+	PRIMARY KEY(prod_no)
+);
