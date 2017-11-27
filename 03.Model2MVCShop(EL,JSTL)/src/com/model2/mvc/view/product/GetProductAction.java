@@ -21,6 +21,8 @@ public class GetProductAction extends Action {
 		
 		request.setAttribute("product", product);
 		
+		System.out.println(product.getFileName());
+		
 		String menu = request.getParameter("menu");
 				
 		String history = null;
