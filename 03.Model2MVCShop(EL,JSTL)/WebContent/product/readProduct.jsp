@@ -75,7 +75,7 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<!-- <img src = "/images/uploadFiles/../../images/empty.GIF"/> -->
-			<img src = "${product.fileName }"/>
+			<img src = "/images/uploadFiles/${product.fileName.trim()}"/>
 		</td>
 	</tr>
 	<tr>

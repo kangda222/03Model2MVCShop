@@ -85,21 +85,6 @@ public class AddProductAction extends Action {
 				System.out.println("인코딩 타입이 multipart/form-data가 아닙니다.");
 			}
 		
-		
-//		Product product = new Product();
-//		product.setProdName(request.getParameter("prodName"));
-//		product.setProdDetail(request.getParameter("prodDetail"));
-//		product.setManuDate(request.getParameter("manuDate"));
-//		product.setPrice(Integer.parseInt(request.getParameter("price")));
-//		product.setFileName(request.getParameter("fileName"));
-//		
-//		System.out.println(product);
-//		
-//		ProductService service = new ProductServiceImpl();
-//		service.addProduct(product);
-//		
-//		request.setAttribute("product", product);
-		
 		return "forward:/product/addProduct.jsp";
 	
 	}
